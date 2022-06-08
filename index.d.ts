@@ -34,9 +34,10 @@ declare namespace Eris {
   type ApplicationCommandOptionsRole = ApplicationCommandOption<"ROLE">;
   type ApplicationCommandOptionsString = ApplicationCommandOptionAutocomplete<"STRING"> | ApplicationCommandOptionChoices<"STRING">
   type ApplicationCommandOptionsUser = ApplicationCommandOption<"USER">;
+  type ApplicationCommandOptionsAttachment = ApplicationCommandOption<"ATTACHMENT">;
 
   type ApplicationCommandOptionsWithOptions = ApplicationCommandOptionsSubCommand | ApplicationCommandOptionsSubCommandGroup;
-  type ApplicationCommandOptionsWithValue = ApplicationCommandOptionsString | ApplicationCommandOptionsInteger | ApplicationCommandOptionsBoolean | ApplicationCommandOptionsUser | ApplicationCommandOptionsChannel | ApplicationCommandOptionsRole | ApplicationCommandOptionsMentionable | ApplicationCommandOptionsNumber;
+  type ApplicationCommandOptionsWithValue = ApplicationCommandOptionsString | ApplicationCommandOptionsInteger | ApplicationCommandOptionsBoolean | ApplicationCommandOptionsUser | ApplicationCommandOptionsChannel | ApplicationCommandOptionsRole | ApplicationCommandOptionsMentionable | ApplicationCommandOptionsNumber | ApplicationCommandOptionsAttachment;
   type ApplicationCommandStructure = ChatInputApplicationCommandStructure | MessageApplicationCommandStructure | UserApplicationCommandStructure;
   type ApplicationCommandStructureConversion<T extends ApplicationCommandStructure, W extends boolean = false> = T extends ChatInputApplicationCommandStructure ?
     ChatInputApplicationCommand<W> : T extends MessageApplicationCommandStructure ?
@@ -122,8 +123,9 @@ declare namespace Eris {
   type InteractionDataOptionsRole = InteractionDataOption<"ROLE", string>;
   type InteractionDataOptionsString = InteractionDataOption<"STRING", string>;
   type InteractionDataOptionsUser = InteractionDataOption<"USER", string>;
+  type InteractionDataOptionsAttachment = InteractionDataOption<"ATTACHMENT", string>;
   type InteractionDataOptionsWithOptions = InteractionDataOptionsSubCommand | InteractionDataOptionsSubCommandGroup;
-  type InteractionDataOptionsWithValue = InteractionDataOptionsString | InteractionDataOptionsInteger | InteractionDataOptionsBoolean | InteractionDataOptionsUser | InteractionDataOptionsChannel | InteractionDataOptionsRole | InteractionDataOptionsMentionable | InteractionDataOptionsNumber;
+  type InteractionDataOptionsWithValue = InteractionDataOptionsString | InteractionDataOptionsInteger | InteractionDataOptionsBoolean | InteractionDataOptionsUser | InteractionDataOptionsChannel | InteractionDataOptionsRole | InteractionDataOptionsMentionable | InteractionDataOptionsNumber | InteractionDataOptionsAttachment;
   type InteractionResponse = InteractionResponseAutocomplete | InteractionResponseDeferred | InteractionResponseMessage;
   type InteractionTypes = Constants["InteractionTypes"][keyof Constants["InteractionTypes"]];
 
@@ -1076,6 +1078,7 @@ declare namespace Eris {
     options?: InteractionDataOptions[];
   }
   interface CommandInteractionResolvedData {
+    attachments?: Collection<Attachment>;
     channels?: Collection<AnyChannel>;
     members?: Collection<Member>;
     messages?: Collection<Message>;
@@ -1238,6 +1241,7 @@ declare namespace Eris {
   }
   interface Attachment extends PartialAttachment {
     content_type?: string;
+    description?: string;
     ephemeral?: boolean;
     filename: string;
     height?: number;
@@ -1630,6 +1634,7 @@ declare namespace Eris {
       ROLE:              8;
       MENTIONABLE:       9;
       NUMBER:            10;
+      ATTACHMENT:        11;
     };
     ApplicationCommandPermissionTypes: {
       ROLE: 1;
@@ -2186,6 +2191,19 @@ declare namespace Eris {
     show_current_game: boolean;
     status: string;
     theme: string;
+  }
+
+  export class Attachment extends Base {
+    contentType?: string;
+    ephemeral?: boolean;
+    filename: string;
+    height?: number;
+    id: string;
+    proxyUrl: string;
+    size: number;
+    url: string;
+    width?: number;
+    constructor(data: BaseData);
   }
 
   class Base implements SimpleJSON {
