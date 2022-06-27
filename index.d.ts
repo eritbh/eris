@@ -57,6 +57,13 @@ declare namespace Eris {
   type AutoModerationTriggerType = Constants["AutoModerationTriggerTypes"][keyof Constants["AutoModerationTriggerTypes"]];
   type EditAutoModerationRuleOptions = Partial<CreateAutoModerationRuleOptions>;
 
+  // Auto Moderation
+  type AutoModerationActionType = Constants["AutoModerationActionTypes"][keyof Constants["AutoModerationActionTypes"]];
+  type AutoModerationEventType = Constants["AutoModerationEventTypes"][keyof Constants["AutoModerationEventTypes"]];
+  type AutoModerationKeywordPresetType = Constants["AutoModerationKeywordPresetTypes"][keyof Constants["AutoModerationKeywordPresetTypes"]];
+  type AutoModerationTriggerType = Constants["AutoModerationTriggerTypes"][keyof Constants["AutoModerationTriggerTypes"]];
+  type EditAutoModerationRuleOptions = Partial<CreateAutoModerationRuleOptions>;
+
   // Cache
   interface Uncached { id: string }
 
