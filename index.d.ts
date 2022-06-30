@@ -444,7 +444,7 @@ declare namespace Eris {
     /** @deprecated */
     guildCreateTimeout?: number;
     /** @deprecated */
-    intents: number | (IntentStrings | number)[];
+    intents?: number | (IntentStrings | number)[];
     /** @deprecated */
     largeThreshold?: number;
     /** @deprecated */
@@ -897,7 +897,7 @@ declare namespace Eris {
     firstShardID?: number;
     getAllUsers?: boolean;
     guildCreateTimeout?: number;
-    intents?: number | IntentStrings[];
+    intents?: number | (IntentStrings | number)[];
     largeThreshold?: number;
     lastShardID?: number;
     maxReconnectAttempts?: number;
@@ -3427,6 +3427,7 @@ declare namespace Eris {
     pong(): Promise<void>;
   }
   export class ModalSubmitInteraction<T extends PossiblyUncachedTextable = TextableChannel> extends Interaction {
+    appPermissions?: Permission;
     channel: T;
     data: ModalSubmitInteractionData;
     guildID?: string;
