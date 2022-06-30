@@ -444,7 +444,7 @@ declare namespace Eris {
     /** @deprecated */
     guildCreateTimeout?: number;
     /** @deprecated */
-    intents?: number | IntentStrings[];
+    intents: number | (IntentStrings | number)[];
     /** @deprecated */
     largeThreshold?: number;
     /** @deprecated */
@@ -3348,6 +3348,7 @@ declare namespace Eris {
   }
 
   export class AutocompleteInteraction<T extends PossiblyUncachedTextable = TextableChannel> extends Interaction {
+    appPermissions?: Permission;
     channel: T;
     data: AutocompleteInteractionData;
     guildID?: string;
@@ -3361,6 +3362,7 @@ declare namespace Eris {
   }
 
   export class CommandInteraction<T extends PossiblyUncachedTextable = TextableChannel> extends Interaction {
+    appPermissions?: Permission;
     channel: T;
     data: CommandInteractionData;
     guildID?: string;
@@ -3382,6 +3384,7 @@ declare namespace Eris {
   }
 
   export class ComponentInteraction<T extends PossiblyUncachedTextable = TextableChannel> extends Interaction {
+    appPermissions?: Permission;
     channel: T;
     data: InteractionComponentButtonData | InteractionComponentSelectMenuData;
     guildID?: string;
