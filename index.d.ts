@@ -468,6 +468,8 @@ declare namespace Eris {
     restMode?: boolean;
     /** @deprecated */
     seedVoiceConnections?: boolean;
+    shardConcurrency?: number | "auto";
+    shardIDs?: number[];
     ws?: unknown;
   }
   interface CommandClientOptions {
